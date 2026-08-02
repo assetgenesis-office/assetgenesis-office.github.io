@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ドローン業務マニュアル・機材選定 | 地域資産創生機構 ASSET GENESIS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green:#27ae60;--green-dark:#1e8449;--green-deep:#145a32;
+  --green-pale:#eafaf1;--green-ultra:#f4fdf8;
+  --accent:#f5a623;--text:#1a2540;--text-mid:#4a5a78;
+  --border:rgba(39,174,96,.18);--shadow:rgba(30,132,73,.1);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:#f4fdf8;color:var(--text);line-height:1.7;}
+
+/* NAV */
+#nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:.7rem clamp(1rem,4vw,3rem);display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;box-shadow:0 2px 12px var(--shadow);}
+.nav-logo{font-family:'Noto Serif JP',serif;font-weight:700;font-size:.9rem;color:var(--green-deep);text-decoration:none;margin-right:.8rem;}
+#nav a:not(.nav-logo){font-size:.72rem;color:var(--text-mid);text-decoration:none;padding:.28rem .7rem;border-radius:20px;border:1px solid var(--border);transition:background .2s,color .2s;}
+#nav a:not(.nav-logo):hover{background:var(--green-pale);color:var(--green-dark);}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--green-deep),var(--green-dark));padding:3.5rem clamp(1.2rem,6vw,5rem);color:#fff;}
+.hero h1{font-family:'Noto Serif JP',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;margin-bottom:.6rem;}
+.hero p{font-size:.9rem;color:rgba(255,255,255,.8);line-height:2;}
+
+/* SECTION */
+.section{padding:3rem clamp(1.2rem,5vw,5rem);}
+.section:nth-child(odd){background:#fff;}
+.section:nth-child(even){background:var(--green-ultra);}
+.section-ttl{display:flex;align-items:center;gap:.8rem;margin-bottom:.4rem;}
+.section-badge{background:var(--green);color:#fff;font-size:.68rem;font-weight:700;padding:.2rem .8rem;border-radius:20px;letter-spacing:.08em;}
+.section-h{font-family:'Noto Serif JP',serif;font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:700;color:var(--text);margin-bottom:.5rem;}
+.section-sub{font-size:.88rem;color:var(--text-mid);margin-bottom:2rem;line-height:1.9;}
+.divider{width:40px;height:3px;background:linear-gradient(90deg,var(--green),#82e0aa);border-radius:2px;margin:.5rem 0 1.8rem;}
+
+/* PROCESS TABLE */
+.process-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1.8rem;}
+.process-table th{background:var(--green-dark);color:#fff;padding:.7rem 1rem;text-align:left;font-weight:700;font-size:.78rem;letter-spacing:.05em;}
+.process-table td{padding:.75rem 1rem;border-bottom:1px solid var(--border);vertical-align:top;}
+.process-table tr:last-child td{border-bottom:none;}
+.process-table tr:nth-child(even) td{background:var(--green-ultra);}
+.step-num{display:inline-block;background:var(--green);color:#fff;font-size:.7rem;font-weight:700;padding:.1rem .55rem;border-radius:20px;margin-right:.4rem;}
+
+/* CHECKLIST */
+.checklist{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem;margin-bottom:1.5rem;}
+.checklist-ttl{font-weight:700;font-size:.9rem;color:var(--green-dark);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem;}
+.checklist-item{display:flex;align-items:flex-start;gap:.55rem;font-size:.84rem;color:var(--text);padding:.35rem 0;border-bottom:1px solid rgba(39,174,96,.08);}
+.checklist-item:last-child{border-bottom:none;}
+.chk{width:16px;height:16px;border:2px solid var(--green);border-radius:3px;flex-shrink:0;margin-top:.18rem;}
+
+/* FORM TEMPLATE */
+.form-box{background:#fff;border:2px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:1.5rem;}
+.form-header{background:var(--green-dark);color:#fff;padding:.8rem 1.4rem;font-weight:700;font-size:.88rem;display:flex;justify-content:space-between;align-items:center;}
+.form-body{padding:1.2rem 1.4rem;}
+.form-row{display:grid;grid-template-columns:140px 1fr;gap:.5rem;margin-bottom:.6rem;align-items:start;}
+.form-label{font-size:.8rem;font-weight:700;color:var(--text-mid);padding-top:.3rem;}
+.form-field{border:1px solid #ccc;border-radius:6px;padding:.4rem .7rem;font-size:.82rem;color:var(--text);background:#fafff8;min-height:1.9rem;}
+.form-field.tall{min-height:4rem;}
+.form-note{font-size:.72rem;color:var(--text-mid);margin-top:.3rem;line-height:1.7;}
+
+/* EQUIPMENT */
+.equip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;margin-bottom:1.5rem;}
+.equip-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 4px 18px var(--shadow);}
+.equip-card-head{padding:1.2rem 1.4rem;display:flex;align-items:center;gap:.8rem;}
+.equip-card-icon{font-size:2.2rem;}
+.equip-card-name{font-weight:700;font-size:.95rem;color:var(--text);}
+.equip-card-use{font-size:.72rem;color:var(--green-dark);font-weight:700;background:var(--green-pale);padding:.1rem .6rem;border-radius:10px;margin-top:.2rem;display:inline-block;}
+.equip-card-body{padding:0 1.4rem 1.2rem;}
+.equip-spec{font-size:.8rem;color:var(--text-mid);margin-bottom:.3rem;display:flex;gap:.5rem;}
+.equip-spec-key{font-weight:700;color:var(--text);min-width:80px;}
+.equip-price{font-family:'Noto Serif JP',serif;font-size:1.2rem;font-weight:700;color:var(--green-dark);margin-top:.8rem;padding-top:.7rem;border-top:1px solid var(--border);}
+.equip-rec{display:inline-block;background:var(--accent);color:#5c3800;font-size:.7rem;font-weight:700;padding:.15rem .7rem;border-radius:20px;margin-left:.5rem;}
+
+/* MISC */
+.warn-box{background:#fffbe6;border:1.5px solid #f5a623;border-radius:10px;padding:1rem 1.2rem;font-size:.83rem;color:#7a5000;line-height:1.9;margin-bottom:1.4rem;}
+.warn-box strong{color:#c27b00;}
+.note-box{background:var(--green-pale);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;font-size:.83rem;color:var(--green-deep);line-height:1.9;margin-bottom:1.4rem;}
+.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem;}
+.tag{background:var(--green-pale);border:1px solid var(--border);border-radius:20px;padding:.22rem .8rem;font-size:.78rem;font-weight:700;color:var(--green-dark);}
+
+/* ===== PRINT FIX ===== */
+@media print {
+  .fade-in { opacity: 1 !important; transform: none !important; transition: none !important; }
+  #header, #float-cta, .float-btn, #float-btn, .hamburger, nav#nav,
+  .no-print, #banner { display: none !important; }
+  body { padding-top: 0 !important; }
+  section, .section { page-break-inside: avoid; }
+  a { color: inherit !important; text-decoration: none !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="index.html">🌿 ASSET GENESIS</a>
+  <a href="#inspection">屋根点検</a>
+  <a href="#solar">太陽光</a>
+  <a href="#agri">農薬散布</a>
+  <a href="#aerial">空撮</a>
+  <a href="#vacant">空き家確認</a>
+  <a href="#equipment">機材選定</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>🚁 ドローン業務マニュアル ＆ 機材選定</h1>
+  <p>地域資産創生機構 ASSET GENESIS<br>
+  各業務の工程・様式・チェックリスト、および推奨機材をまとめた社内標準ドキュメント</p>
+</div>
+
+
+<!-- ========== 1. 屋根点検 ========== -->
+<div class="section" id="inspection">
+  <div class="section-ttl">
+    <span class="section-badge">業務 01</span>
+    <span style="font-size:1.6rem;">🏠</span>
+  </div>
+  <div class="section-h">ドローン屋根点検マニュアル</div>
+  <div class="divider"></div>
+  <div class="section-sub">対象：戸建て住宅の屋根・雨樋・棟の状態確認。写真データ＋簡易レポートを成果物として提供する。</div>
+
+  <h3 style="font-size:.95rem;font-weight:700;color:var(--green-dark);margin-bottom:1rem;">■ 工程表</h3>
+  <table class="process-table">
+    <thead><tr><th>工程</th><th>内容</th><th>担当</th><th>目安時間</th><th>使用様式</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-num">1</span>申込受付</td><td>メールにて住所・ご希望日・築年数を受領。自動返信後、内容確認のうえ日程調整メールを送付</td><td>代表</td><td>0.5時間</td><td>申込確認書（様式A）</td></tr>
+      <tr><td><span class="step-num">2</span>事前調査</td><td>① Google Maps・住宅地図で建物形状・周辺障害物を確認<br>② 航空法の飛行制限エリア（国交省DIPSまたはFlight Spot）を確認<br>③ 電線・高圧線・航路の有無を確認</td><td>代表</td><td>0.5時間</td><td>事前調査チェックリスト（様式B）</td></tr>
+      <tr><td><span class="step-num">3</span>飛行計画</td><td>飛行エリア・高度・経路をマップに落とす。特定飛行の場合はDIPS2.0で事前届け出（飛行24時間前まで）</td><td>代表</td><td>0.5時間</td><td>飛行計画書（様式C）</td></tr>
+      <tr><td><span class="step-num">4</span>当日：機材確認</td><td>① バッテリー残量100%確認（予備2本以上持参）<br>② プロペラの傷・緩み確認<br>③ ジンバル・カメラ動作確認<br>④ RCコントローラー充電確認<br>⑤ microSD空き容量確認（最低32GB）</td><td>代表</td><td>20分</td><td>飛行前チェックリスト（様式D）</td></tr>
+      <tr><td><span class="step-num">5</span>当日：現地確認</td><td>① 風速確認（スマートフォンアプリ）→ 5m/s以上は中止<br>② 周辺に人・車がいないか確認<br>③ 緊急着陸エリアの確認<br>④ 建物所有者への事前挨拶（必要に応じて）</td><td>代表</td><td>10分</td><td>当日確認シート（様式D）</td></tr>
+      <tr><td><span class="step-num">6</span>飛行・撮影</td><td>① ホームポイント確認後テイクオフ<br>② 屋根全景（4方向）→ 棟→ 瓦面→ 雨樋→ 破風板の順に撮影<br>③ 疑わしい箇所はズームまたは接近して追加撮影<br>④ 動画・静止画の両方を記録<br>⑤ バッテリー30%以下で帰還</td><td>代表</td><td>20〜40分</td><td>撮影記録（様式E）</td></tr>
+      <tr><td><span class="step-num">7</span>データ整理</td><td>① SDカードからPCへ転送<br>② フォルダ構成：[顧客名_日付]/[全景][棟][雨樋][詳細]<br>③ 不要カットを削除（ピンぼけ・構図不良のみ）<br>④ JPGで保存（RAWは原本として別途保管）</td><td>代表</td><td>1時間</td><td>—</td></tr>
+      <tr><td><span class="step-num">8</span>レポート作成</td><td>① 各部位の写真を貼付<br>② 「異常なし／要観察／要対応」の3段階で評価<br>③ コメント記入<br>④ PDF化してメール送付</td><td>代表</td><td>1〜2時間</td><td>簡易レポート様式（様式F）</td></tr>
+      <tr><td><span class="step-num">9</span>納品・請求</td><td>① 写真データをUSB or Googleドライブで共有<br>② 簡易レポートPDFを添付メール送付<br>③ 振込先案内（9,800円〜＋出張費）</td><td>代表</td><td>0.5時間</td><td>請求書（様式G）</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:.95rem;font-weight:700;color:var(--green-dark);margin-bottom:1rem;">■ 飛行前チェックリスト（様式D）</h3>
+  <div class="checklist">
+    <div class="checklist-ttl">🛡️ 機材チェック</div>
+    <div class="checklist-item"><div class="chk"></div>バッテリー残量 100%（本体）</div>
+    <div class="checklist-item"><div class="chk"></div>予備バッテリー 2本以上 持参</div>
+    <div class="checklist-item"><div class="chk"></div>プロペラ：4枚全て傷・欠けなし・しっかり固定</div>
+    <div class="checklist-item"><div class="chk"></div>ジンバル保護カバー取外し済み</div>
+    <div class="checklist-item"><div class="chk"></div>カメラ・レンズ清潔（汚れ・指紋なし）</div>
+    <div class="checklist-item"><div class="chk"></div>RCコントローラー充電確認</div>
+    <div class="checklist-item"><div class="chk"></div>microSD カード装着・残量十分（最低32GB）</div>
+    <div class="checklist-item"><div class="chk"></div>機体にひび・変形・異音なし</div>
+  </div>
+  <div class="checklist">
+    <div class="checklist-ttl">🌤️ 環境チェック（飛行当日）</div>
+    <div class="checklist-item"><div class="chk"></div>風速 5m/s 以下を確認（windy.com等）</div>
+    <div class="checklist-item"><div class="chk"></div>視程良好・雨・霧なし</div>
+    <div class="checklist-item"><div class="chk"></div>飛行制限エリア外であることを確認（DIPSまたはFlight Spot）</div>
+    <div class="checklist-item"><div class="chk"></div>周辺に人・ペット・車がいないことを確認</div>
+    <div class="checklist-item"><div class="chk"></div>緊急着陸ポイントの確認</div>
+    <div class="checklist-item"><div class="chk"></div>周囲の高圧線・電線の位置把握</div>
+  </div>
+
+  <h3 style="font-size:.95rem;font-weight:700;color:var(--green-dark);margin-bottom:1rem;">■ 簡易レポート様式（様式F）</h3>
+  <div class="form-box">
+    <div class="form-header">屋根点検 簡易レポート <span style="font-size:.75rem;opacity:.8;">地域資産創生機構 ASSET GENESIS</span></div>
+    <div class="form-body">
+      <div class="form-row"><div class="form-label">点検日</div><div class="form-field">　　　年　　月　　日（　曜日）</div></div>
+      <div class="form-row"><div class="form-label">物件住所</div><div class="form-field"></div></div>
+      <div class="form-row"><div class="form-label">築年数（概算）</div><div class="form-field">約　　　年</div></div>
+      <div class="form-row"><div class="form-label">屋根材種類</div><div class="form-field">□ スレート　□ 瓦　□ 金属　□ その他（　　　　）</div></div>
+      <div style="height:.8rem;"></div>
+      <table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+        <thead><tr style="background:var(--green-pale);">
+          <th style="padding:.5rem .7rem;text-align:left;border:1px solid var(--border);">点検箇所</th>
+          <th style="padding:.5rem .7rem;text-align:center;border:1px solid var(--border);">評価</th>
+          <th style="padding:.5rem .7rem;text-align:left;border:1px solid var(--border);">コメント・所見</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:.5rem .7rem;border:1px solid var(--border);">屋根面全体</td><td style="padding:.5rem .7rem;text-align:center;border:1px solid var(--border);">□ 異常なし　□ 要観察　□ 要対応</td><td style="padding:.5rem .7rem;border:1px solid var(--border);min-height:2rem;"></td></tr>
+          <tr style="background:#f9fdf9;"><td style="padding:.5rem .7rem;border:1px solid var(--border);">棟瓦・板金</td><td style="padding:.5rem .7rem;text-align:center;border:1px solid var(--border);">□ 異常なし　□ 要観察　□ 要対応</td><td style="padding:.5rem .7rem;border:1px solid var(--border);"></td></tr>
+          <tr><td style="padding:.5rem .7rem;border:1px solid var(--border);">雨樋（軒樋・竪樋）</td><td style="padding:.5rem .7rem;text-align:center;border:1px solid var(--border);">□ 異常なし　□ 要観察　□ 要対応</td><td style="padding:.5rem .7rem;border:1px solid var(--border);"></td></tr>
+          <tr style="background:#f9fdf9;"><td style="padding:.5rem .7rem;border:1px solid var(--border);">破風板・鼻隠し</td><td style="padding:.5rem .7rem;text-align:center;border:1px solid var(--border);">□ 異常なし　□ 要観察　□ 要対応</td><td style="padding:.5rem .7rem;border:1px solid var(--border);"></td></tr>
+          <tr><td style="padding:.5rem .7rem;border:1px solid var(--border);">外壁（上部）</td><td style="padding:.5rem .7rem;text-align:center;border:1px solid var(--border);">□ 異常なし　□ 要観察　□ 要対応</td><td style="padding:.5rem .7rem;border:1px solid var(--border);"></td></tr>
+        </tbody>
+      </table>
+      <div style="height:.8rem;"></div>
+      <div class="form-row"><div class="form-label">総合所見</div><div class="form-field tall"></div></div>
+      <div class="form-row"><div class="form-label">写真枚数</div><div class="form-field">　　　　枚（JPG形式、別途データ提供）</div></div>
+      <div style="margin-top:1.2rem;font-size:.75rem;color:var(--text-mid);line-height:1.8;">
+        ※ 本レポートはドローン空撮映像による外観目視確認です。専門業者による詳細点検の代替にはなりません。<br>
+        ※ 「要対応」箇所は、専門業者への詳細確認をお勧めします。<br>
+        担当：地域資産創生機構 ASSET GENESIS
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== 2. 太陽光パネル点検 ========== -->
+<div class="section" id="solar">
+  <div class="section-ttl"><span class="section-badge">業務 02</span><span style="font-size:1.6rem;">☀️</span></div>
+  <div class="section-h">太陽光パネル点検マニュアル</div>
+  <div class="divider"></div>
+  <div class="section-sub">屋根設置の太陽光パネルの汚れ・破損・ホットスポット・影落ちをドローン映像で確認する。</div>
+
+  <table class="process-table">
+    <thead><tr><th>工程</th><th>内容</th><th>目安時間</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-num">1</span>申込受付</td><td>パネル枚数・設置年・メーカーを確認。通常点検か発電量低下懸念かを確認</td><td>0.5時間</td></tr>
+      <tr><td><span class="step-num">2</span>事前調査</td><td>パネル配置図（メーカー保証書等）の提供依頼。飛行制限確認</td><td>0.5時間</td></tr>
+      <tr><td><span class="step-num">3</span>飛行・撮影</td><td>① 全体俯瞰→ パネル列ごとに低高度撮影<br>② 汚れ・変色・割れのあるパネルは接近して追加撮影<br>③ 影落ち状況は時間帯を変えて2回撮影推奨（午前・午後）</td><td>30〜60分</td></tr>
+      <tr><td><span class="step-num">4</span>データ整理</td><td>パネル番号マップと写真を対応づけ。異常箇所に番号付きアノテーション</td><td>1〜2時間</td></tr>
+      <tr><td><span class="step-num">5</span>レポート作成</td><td>パネル配置図に異常箇所をマーキング。汚れ・破損・影の種別と推奨対応を記載</td><td>1時間</td></tr>
+    </tbody>
+  </table>
+  <div class="warn-box"><strong>⚠️ 注意：</strong>赤外線サーマルカメラがないため、ホットスポット（内部欠陥）の検出はできません。目視確認可能な外観異常のみ報告します。お客様に事前に説明・了承を得ること。</div>
+</div>
+
+
+<!-- ========== 3. 農薬散布 ========== -->
+<div class="section" id="agri">
+  <div class="section-ttl"><span class="section-badge">業務 03</span><span style="font-size:1.6rem;">🌿</span></div>
+  <div class="section-h">農薬散布マニュアル</div>
+  <div class="divider"></div>
+  <div class="section-sub">農業用ドローンによる農薬散布業務。農薬登録・飛行申請・散布記録まで一貫して管理する。※農薬散布専用機（DJI Agras T25等）の導入は、点検業務の実績積み上げ後に判断する。</div>
+
+  <div class="warn-box">
+    <strong>⚠️ 農薬散布は通常の飛行と異なる法規制が適用されます。</strong><br>
+    ① 農薬取締法：散布する農薬が「無人航空機による散布」用途で農薬登録されていることを必ず確認<br>
+    ② 航空法：農薬散布は「危険物輸送」に該当し、国交省への飛行申請が必要<br>
+    ③ 近隣への事前通知：隣接農地・住宅への農薬飛散防止の説明と同意取得が必要
+  </div>
+
+  <table class="process-table">
+    <thead><tr><th>工程</th><th>内容</th><th>目安時間</th><th>使用様式</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-num">1</span>受注・確認</td><td>農地の面積・農薬の種類・希釈倍率・散布量（L/10a）を確認。農薬のラベルで「無人航空機散布」登録を確認</td><td>1時間</td><td>受注確認書</td></tr>
+      <tr><td><span class="step-num">2</span>飛行申請</td><td>DIPS2.0にて飛行申請（農薬散布＝特定飛行。10日前までに申請推奨）。飛行日・エリア・農薬名・散布量を記入</td><td>1〜2時間</td><td>飛行計画書（農薬散布版）</td></tr>
+      <tr><td><span class="step-num">3</span>近隣通知</td><td>隣接農家・近隣住宅へ散布日・農薬名・時間帯を書面で通知。同意書を取得して保管</td><td>1〜2時間</td><td>近隣通知書・同意書</td></tr>
+      <tr><td><span class="step-num">4</span>農薬調製</td><td>農薬を規定倍率で希釈。計量は農薬専用計量カップを使用。調製記録を記入</td><td>30分</td><td>農薬調製記録（様式AG-1）</td></tr>
+      <tr><td><span class="step-num">5</span>機材準備</td><td>① タンク清潔確認・農薬充填<br>② ノズル詰まり確認（水テスト）<br>③ 散布設定（散布量・飛行速度・飛行高度）を機体にセット<br>④ 農地マッピング（A-Bポイント設定）</td><td>30〜60分</td><td>飛行前チェックリスト（農業版）</td></tr>
+      <tr><td><span class="step-num">6</span>散布実施</td><td>① 風速3m/s以下を確認（農薬散布は屋根点検より厳しい基準）<br>② 早朝・夕方の無風時間帯を推奨<br>③ 機体の自動飛行を監視しながら散布<br>④ 残農薬量・散布ムラを記録</td><td>農地面積による</td><td>散布記録簿（様式AG-2）</td></tr>
+      <tr><td><span class="step-num">7</span>後処理</td><td>① タンク・ノズルを清水で3回洗浄<br>② 廃液は農薬の処理基準に従って処分<br>③ 機体外部を拭き上げ<br>④ 散布記録簿を完成・保管（3年間）</td><td>1時間</td><td>散布記録簿（様式AG-2）</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:.95rem;font-weight:700;color:var(--green-dark);margin-bottom:1rem;">■ 農薬散布記録簿（様式AG-2）</h3>
+  <div class="form-box">
+    <div class="form-header">農薬散布記録簿 <span style="font-size:.75rem;opacity:.8;">※農薬取締法に基づき3年間保管義務</span></div>
+    <div class="form-body">
+      <div class="form-row"><div class="form-label">散布日</div><div class="form-field">　　年　　月　　日（　　曜日）　開始　　時　　分　／　終了　　時　　分</div></div>
+      <div class="form-row"><div class="form-label">農地所在地</div><div class="form-field"></div></div>
+      <div class="form-row"><div class="form-label">農地面積</div><div class="form-field">　　　　a（アール）／　　　　筆</div></div>
+      <div class="form-row"><div class="form-label">作物名</div><div class="form-field"></div></div>
+      <div class="form-row"><div class="form-label">農薬名（登録番号）</div><div class="form-field"></div></div>
+      <div class="form-row"><div class="form-label">希釈倍率</div><div class="form-field">　　　　倍</div></div>
+      <div class="form-row"><div class="form-label">散布量</div><div class="form-field">原液　　　　mL　／　希釈後　　　　L　／　10aあたり　　　　L</div></div>
+      <div class="form-row"><div class="form-label">飛行高度</div><div class="form-field">　　　　m</div></div>
+      <div class="form-row"><div class="form-label">飛行速度</div><div class="form-field">　　　　m/s</div></div>
+      <div class="form-row"><div class="form-label">風速（当日）</div><div class="form-field">　　　　m/s（中断基準：3m/s超）</div></div>
+      <div class="form-row"><div class="form-label">天候</div><div class="form-field">□ 晴　□ 曇　□ その他（　　　）</div></div>
+      <div class="form-row"><div class="form-label">特記事項</div><div class="form-field tall"></div></div>
+      <div style="margin-top:1rem;font-size:.75rem;color:var(--text-mid);">操縦者：　　　　　　　機体登録番号：　　　　　　　　　　　　記録日：　　　年　　月　　日</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== 4. 空撮 ========== -->
+<div class="section" id="aerial">
+  <div class="section-ttl"><span class="section-badge">業務 04</span><span style="font-size:1.6rem;">📸</span></div>
+  <div class="section-h">空撮・イベント撮影マニュアル</div>
+  <div class="divider"></div>
+  <div class="section-sub">地域のお祭り・自治会行事・新築記念・不動産空撮等。飛行許可申請から納品まで。</div>
+
+  <table class="process-table">
+    <thead><tr><th>工程</th><th>内容</th><th>目安時間</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-num">1</span>受注・確認</td><td>撮影目的・日時・場所・納品物（動画/写真）・使用用途（SNS/印刷等）を確認</td><td>0.5時間</td></tr>
+      <tr><td><span class="step-num">2</span>飛行申請</td><td>イベント会場周辺の飛行制限・人口集中地区（DID）確認。必要に応じDIPS2.0で申請。祭事・人が集まる場所は「催し場所上空飛行」として別途申請が必要な場合あり</td><td>1〜3時間</td></tr>
+      <tr><td><span class="step-num">3</span>撮影同意</td><td>撮影対象者・イベント主催者から撮影同意を取得。特に人物が映る場合は書面または口頭での同意が必須</td><td>—</td></tr>
+      <tr><td><span class="step-num">4</span>当日撮影</td><td>① ホールド地点から離陸→全景→メインショット→ディテール<br>② 動画はLog撮影（カラグレ前提）<br>③ 静止画はRAW＋JPG両方で保存<br>④ バッテリー交換時は必ず着陸・人払い</td><td>1〜3時間</td></tr>
+      <tr><td><span class="step-num">5</span>編集・納品</td><td>① 動画：カラグレ → BGMなし（著作権問題回避）で納品 → 依頼者がBGMを追加<br>② 写真：RAW現像 → 色調整 → JPGで納品<br>③ 納品形式：WeTransfer or Googleドライブ共有</td><td>2〜5時間</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ========== 5. 空き家確認 ========== -->
+<div class="section" id="vacant">
+  <div class="section-ttl"><span class="section-badge">業務 05</span><span style="font-size:1.6rem;">🏚️</span></div>
+  <div class="section-h">空き家・廃屋 外観確認マニュアル</div>
+  <div class="divider"></div>
+  <div class="section-sub">遠方に住む所有者の依頼で、空き家の外観・屋根・庭の状態を記録する業務。</div>
+
+  <table class="process-table">
+    <thead><tr><th>工程</th><th>内容</th><th>目安時間</th></tr></thead>
+    <tbody>
+      <tr><td><span class="step-num">1</span>受注・確認</td><td>物件住所・所有者確認（委任状または所有者証明書の提出依頼）。確認希望箇所（屋根・庭・外壁等）を聴取</td><td>0.5時間</td></tr>
+      <tr><td><span class="step-num">2</span>権利確認</td><td>飛行前に当該物件の所有者本人であることを書面で確認。他人の土地・建物への無断飛行は法律違反のため必須</td><td>—</td></tr>
+      <tr><td><span class="step-num">3</span>現地撮影</td><td>① 敷地全景（4方向）<br>② 屋根・外壁の状態<br>③ 庭・樹木の繁茂状況<br>④ 雨樋・基礎部分<br>⑤ 気になる箇所の接近撮影</td><td>20〜40分</td></tr>
+      <tr><td><span class="step-num">4</span>レポート作成</td><td>写真データ＋所見コメントを報告書にまとめてPDF送付。必要に応じて行政・不動産相談へのつなぎ役も可</td><td>1〜2時間</td></tr>
+    </tbody>
+  </table>
+  <div class="note-box">📌 宅地建物取引士の知識を活かし、空き家活用（賃貸・売却・国庫帰属制度活用等）についての情報提供も可能。本業務と組み合わせてワンストップでサポートします。</div>
+</div>
+
+
+<!-- ========== 機材選定 ========== -->
+<div class="section" id="equipment">
+  <div class="section-ttl"><span class="section-badge">機材</span><span style="font-size:1.6rem;">⚙️</span></div>
+  <div class="section-h">推奨機材選定（2025年版）</div>
+  <div class="divider"></div>
+  <div class="section-sub">屋根点検をメイン業務と位置づけ、<strong>プロペラが露出しない安全設計</strong>の機体を優先選定。住宅や人への接触リスクを最小化する。</div>
+
+  <div class="warn-box" style="background:#e8f5e9;border-color:#27ae60;margin-bottom:2rem;">
+    🛡️ <strong>機体選定の基準：プロペラガード（封鎖型）を最優先</strong><br>
+    屋根に接近する点検飛行では、プロペラが剥き出しの機体は建物・瓦・人に当たった際に大きなリスクを伴う。
+    プロペラが保護カバー・ダクト構造で覆われた機体を選ぶことで、<strong>万一の接触時も怪我・損傷を最小限</strong>に抑えられる。
+  </div>
+
+  <h3 style="font-size:.95rem;font-weight:700;color:var(--green-dark);margin-bottom:1.2rem;">● 屋根点検向け推奨機体（プロペラ保護型）</h3>
+  <div class="equip-grid">
+
+    <!-- DJI Avata 2 -->
+    <div class="equip-card" style="border:2px solid var(--green);">
+      <div class="equip-card-head">
+        <div class="equip-card-icon">🥇</div>
+        <div>
+          <div class="equip-card-name">DJI Avata 2</div>
+          <div class="equip-card-use">屋根点検メイン機 ← 最推奨</div>
+        </div>
+      </div>
+      <div class="equip-card-body">
+        <div style="background:#e8f5e9;border-radius:8px;padding:.5rem .8rem;font-size:.78rem;font-weight:700;color:var(--green-dark);margin-bottom:.8rem;">
+          🛡️ ダクテッド構造：プロペラ完全封鎖・剥き出しゼロ
+        </div>
+        <div class="equip-spec"><span class="equip-spec-key">カメラ</span>1/1.3インチ CMOS 12MP・4K/60fps</div>
+        <div class="equip-spec"><span class="equip-spec-key">レンズ</span>155° 超広角（屋根面を広く一望）</div>
+        <div class="equip-spec"><span class="equip-spec-key">飛行時間</span>最大23分</div>
+        <div class="equip-spec"><span class="equip-spec-key">重量</span>377g</div>
+        <div class="equip-spec"><span class="equip-spec-key">安定性</span>GPS＋ビジョン・ホバリング精度高</div>
+        <div class="equip-spec"><span class="equip-spec-key">操縦方式</span>RC2コントローラー or モーションコントローラー</div>
+        <div class="equip-spec"><span class="equip-spec-key">防護構造</span>プロペラを囲むフレーム一体型ガード（ダクト設計）</div>
+        <div class="equip-price">約 130,000〜165,000円 <span class="equip-rec">安全性最良</span></div>
+        <div style="font-size:.78rem;color:var(--text-mid);margin-top:.6rem;line-height:1.8;">
+          選定理由：プロペラ全体がダクト（囲い）に収まっており、屋根面・軒先に接近しても剥き出しの刃が人や建物に当たる心配がない。FPV機のため機動性が高く、軒下・狭い部分もカバー可能。通常のRC2コントローラーで操縦できる。
+        </div>
+      </div>
+    </div>
+
+    <!-- DJI Mini 4 Pro + ガード -->
+    <div class="equip-card">
+      <div class="equip-card-head">
+        <div class="equip-card-icon">🥈</div>
+        <div>
+          <div class="equip-card-name">DJI Mini 4 Pro<br><small style="font-size:.7rem;font-weight:400;">＋ プロペラガード装着</small></div>
+          <div class="equip-card-use">軽量サブ機 / 練習・バックアップ</div>
+        </div>
+      </div>
+      <div class="equip-card-body">
+        <div style="background:#fff8e1;border-radius:8px;padding:.5rem .8rem;font-size:.78rem;font-weight:700;color:#b07a00;margin-bottom:.8rem;">
+          🛡️ 純正プロペラガード装着（別売 約2,500円）でプロペラ保護
+        </div>
+        <div class="equip-spec"><span class="equip-spec-key">カメラ</span>1/1.3インチ 48MP・4K/60fps HDR</div>
+        <div class="equip-spec"><span class="equip-spec-key">飛行時間</span>最大34分</div>
+        <div class="equip-spec"><span class="equip-spec-key">重量</span>249g未満（ガード装着前）</div>
+        <div class="equip-spec"><span class="equip-spec-key">障害物検知</span>全方向</div>
+        <div class="equip-spec"><span class="equip-spec-key">伝送距離</span>最大20km（O4）</div>
+        <div class="equip-spec"><span class="equip-spec-key">法規制</span>249g未満は機体登録審査区分が軽減※</div>
+        <div class="equip-price">約 90,000円〜（ガード込み）</div>
+        <div style="font-size:.78rem;color:var(--text-mid);margin-top:.6rem;line-height:1.8;">
+          選定理由：249g未満の軽量機体に純正プロペラガードを装着することで、接触時の危険を大幅に低減。機体本体が軽いため万一落下しても衝撃が小さい。練習・サブ機として、またAvata 2の補完として保有を推奨。
+        </div>
+      </div>
+    </div>
+
+    <!-- DJI Neo -->
+    <div class="equip-card">
+      <div class="equip-card-head">
+        <div class="equip-card-icon">🥉</div>
+        <div>
+          <div class="equip-card-name">DJI Neo</div>
+          <div class="equip-card-use">超軽量・練習機・手持ち撮影</div>
+        </div>
+      </div>
+      <div class="equip-card-body">
+        <div style="background:#e8f5e9;border-radius:8px;padding:.5rem .8rem;font-size:.78rem;font-weight:700;color:var(--green-dark);margin-bottom:.8rem;">
+          🛡️ プロペラガード標準付属（購入時から保護済み）
+        </div>
+        <div class="equip-spec"><span class="equip-spec-key">カメラ</span>1/2インチ 12MP・4K/30fps</div>
+        <div class="equip-spec"><span class="equip-spec-key">飛行時間</span>最大18分</div>
+        <div class="equip-spec"><span class="equip-spec-key">重量</span>約70g（超軽量）</div>
+        <div class="equip-spec"><span class="equip-spec-key">操縦</span>スマホ単体 / RC-N3コントローラー</div>
+        <div class="equip-spec"><span class="equip-spec-key">特徴</span>手のひらサイズ・手渡し離着陸可</div>
+        <div class="equip-price">約 39,000円〜</div>
+        <div style="font-size:.78rem;color:var(--text-mid);margin-top:.6rem;line-height:1.8;">
+          選定理由：70gの超軽量機体＋標準ガードで最も安全。カメラ性能はやや劣るが練習・慣熟飛行用として最適。まずNeoで飛行に慣れ、Avata 2での本格点検に移行する学習ロードマップも有効。
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="font-size:.95rem;font-weight:700;color:var(--green-dark);margin:2rem 0 1.2rem;">● 機材投資ロードマップ</h3>
+  <table class="process-table">
+    <thead><tr><th>フェーズ</th><th>機材</th><th>概算投資</th><th>目的</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>フェーズ1（今すぐ）</strong></td>
+        <td>DJI Neo（練習）＋ DJI Mini 4 Pro ＋ プロペラガード</td>
+        <td>約13万円</td>
+        <td>飛行習熟・資格取得・サービス開始</td>
+      </tr>
+      <tr>
+        <td><strong>フェーズ2（実績3件〜）</strong></td>
+        <td>DJI Avata 2（Fly More Combo）</td>
+        <td>約16万円</td>
+        <td>屋根点検メイン機・安全性確保・品質向上</td>
+      </tr>
+      <tr>
+        <td><strong>フェーズ3（農薬散布に進出）</strong></td>
+        <td>DJI Agras T25</td>
+        <td>約155万円</td>
+        <td>農薬散布（農業収益化）※点検実績の積み上げ後に判断</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note-box">📌 <strong>まずNeo＋Mini 4 Proで安全に始める。</strong>プロペラガード付きの軽量機体で飛行に慣れ、二等無人航空機操縦士の資格を活かして屋根点検の実績を積む。Avata 2は点検業務が軌道に乗った段階でメイン機として導入。農薬散布（Agras T25）はその後の判断で十分です。</div>
+
+  <div style="margin-top:2rem;padding:1.2rem 1.6rem;background:#f9f9f9;border-radius:12px;border:1px solid var(--border);font-size:.82rem;color:var(--text-mid);line-height:2;">
+    <strong style="color:var(--text);">※ プロペラガードに関する注意事項</strong><br>
+    ・プロペラガードを装着すると風の抵抗が増加し、飛行時間が5〜10%短くなる場合がある。<br>
+    ・Mini 4 Proのプロペラガード装着時は249gを超える可能性があるため、重量を確認のうえ機体登録（DJI公式サイト）を行うこと。<br>
+    ・Avata 2のダクテッド構造は工具なしでは取り外せない一体型設計のため、常時保護状態で飛行できる。
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="background:var(--green-deep);color:rgba(255,255,255,.7);padding:1.5rem clamp(1.2rem,5vw,5rem);font-size:.8rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;">
+  <span>地域資産創生機構 ASSET GENESIS</span>
+  <span>本マニュアルは社内管理用ドキュメントです。最終更新：2026年</span>
+</div>
+
+</body>
+</html>
