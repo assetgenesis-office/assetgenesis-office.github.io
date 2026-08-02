@@ -1,0 +1,10 @@
+# サイト公開に不要な制作ファイル（GitHubに上げない）
+meishi/
+_旧版アーカイブ/
+YouTube用/
+*.pdf
+*.lnk
+QR_アセジェネHP.png
+名刺_*
+チラシ_*
+flyer-drone*.html
